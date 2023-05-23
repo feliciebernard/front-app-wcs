@@ -3,13 +3,13 @@ import { GET_CONTINENTS } from "./graphql/queries";
 import { useQuery } from "@apollo/client";
 import { Link } from "react-router-dom";
 
-export type ContinentProps = {
+interface ContinentsProps {
   name: string;
   code: string;
-};
+}
 
 function Continents(): JSX.Element {
-  const { loading, data } = useQuery<{ continents: ContinentProps[] }>(
+  const { loading, data } = useQuery<{ getContinents: ContinentsProps[] }>(
     GET_CONTINENTS
   );
 
@@ -17,7 +17,7 @@ function Continents(): JSX.Element {
     <section>
       <h1>Parcourir les continents</h1>
       {loading === true && "Chargement..."}
-      {data?.continents.map((continent) => {
+      {data?.getContinents.map((continent) => {
         return (
           <Link to={`/continent/${continent.code}`}>
             <p>{continent.name}</p>

@@ -10,9 +10,10 @@ export const GET_CONTINENTS = gql`
 `;
 
 export const GET_CONTINENT = gql`
-  query getContinents($getContinentCode: String!) {
+  query getContinents($getContinentCode: ID!) {
     continent(code: $getContinentCode) {
       name
+      code
       countries {
         name
         code
